@@ -3,15 +3,17 @@ class Livros():
         self.titulo = titulo
         self.autor = autor
         self.genero = genero
-        self.status = "Disponivel"
         self.cod_livro = cod_livro
+
+        self.status = "Disponivel"
         self.usuario = None
 
     def emprestar_livro(self, usuario):
         if self.status != 'Disponivel':
             return
         
-        self.usuario = usuario
+
+        self.usuario = usuario.nome
         self.status = 'Emprestado'
         
     def devolver_livro(self):
