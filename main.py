@@ -1,36 +1,38 @@
 from livros import Livros
 from usuario import Usuario
 from biblioteca import Biblioteca
+import mysql.connector
 
-# print(vars(rafaela))
+class Database: 
+    def __init__(self, host, user, password, database):
+        self.host = host 
+        self.user = user 
+        self.password = password 
+        self.database = database 
 
-rafaela = Usuario('Rafaela','01223839020','67940028922')
+    def conectar(self):
+        self.conexao = mysql.connector.connect(
+            host = self.host,
+            user = self.user,
+            password = self.password,
+            database = self.database
 
-dom_casmurro = Livros('Dom Casmurro','Machado de Assís','romance',1)
-antares = Livros('Incidente em Antares','Érico Veríssimo','Ficção distópica',2)
-poliana = Livros('Poliana','Eleanor H. Porter','Literatura infantil',3)
-monica = Livros('Almanacão Da Turma Da Mônica','Maurício de Souza','Literatura infantil',4)
+        )
+        self.cursor = self.conexao.cursor()
 
-# print(vars(dom_casmurro))
+    def desconectar(self):
+        self.conexao.close()
+        
+rafaelatonta = Database("localhost","root","","biblioteca")     
+rafaelatonta.conectar()
+print(vars(rafaelatonta.conexao))
+rafaelatonta.cursor.execute("select * from livro")
+print(rafaelatonta.cursor.fetchall())
 
-# rafaela.pegar_emprestado(dom_casmurro)
-# rafaela.pegar_emprestado(antares)
-# rafaela.pegar_emprestado(monica)
-# rafaela.pegar_emprestado(poliana)
+# print(vars(rafaelatonta.conexao))
+rafaelatonta.desconectar()
+print(vars(rafaelatonta.conexao))
 
-# dom_casmurro.emprestar_livro(rafaela)
-# antares.emprestar_livro(rafaela)
-# monica.emprestar_livro(rafaela)
-# poliana.emprestar_livro(rafaela)
-
-#Metodo emprestar substitui as 8 linhas anteriores
-Biblioteca.emprestar(rafaela, [dom_casmurro, poliana, monica, antares] )
-
-print(poliana.status)
-print(rafaela.lista_livros)
-#print(vars(rafaela))
-# print(vars(dom_casmurro))
-
-saraiva = Biblioteca()
-
-print(dir(saraiva))
+# criar uma classe ControllerLivro
+# sera responsavel por executar as querys SQL chamando o banco de dados e o livro
+# ajustar a classe livro para que implemente um crud (a classe )
