@@ -57,27 +57,4 @@ Biblioteca.emprestar(rafaela, [dom_casmurro, poliana, monica, antares] )
 saraiva = Biblioteca()
 
 # print(dir(saraiva))
-
-###################################################### criar uma função para conectar e desconectar e que apareça ao final ######################################################################################################################
-class Database:
-    def __init__(self,host,user,password,database) :
-        self.host = host
-        self.user = user
-        self.password = password
-        self.database = database
-
-    def conectar(self):
-        self.conexao = mysql.connector.connect(
-            host = self.host,
-            user = self.user,
-            password = self.password,
-            database = self.database
-        )
-    
-ricardao = Database('localhost','root','suporte','biblioteca')
-ricardao.conectar()
-print(vars(ricardao))
-# print(vars(ricardao))   
-# criar uma classe ControllerLivro
-# sera responsável por executar as querys SQL chamando o banco de dados e o livro
-# ajudar a classe livro para que implemente um crud(a classe)     
+print(di)
