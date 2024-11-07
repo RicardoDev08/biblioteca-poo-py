@@ -1,6 +1,11 @@
+# from livros import Livros
+# from POO_PESSOAL.usuario import Usuario
+# from POO_PESSOAL.biblioteca import Biblioteca
+# import mysql.connector
 from livros import Livros
 from usuario import Usuario
 from biblioteca import Biblioteca
+from database import Database
 import mysql.connector
 
 conexao = mysql.connector.connect(
@@ -20,10 +25,10 @@ cursor = conexao.cursor()
 # cursor.execute('update livro set  status_livro = "Indisponível" where id_livro= 2;')
 # conexao.commit()
 
-cursor.execute('select titulo from livro ;')
-resultado=cursor.fetchall()
-for i in resultado:
-    print(resultado)
+# cursor.execute('select titulo from livro ;')
+# resultado=cursor.fetchall()
+# for i in resultado:
+#     print(resultado)
 
 # print(vars(rafaela))
 
@@ -54,7 +59,17 @@ Biblioteca.emprestar(rafaela, [dom_casmurro, poliana, monica, antares] )
 #print(vars(rafaela))
 # print(vars(dom_casmurro))
 
-saraiva = Biblioteca()
+# saraiva = Biblioteca()
 
 # print(dir(saraiva))
-print(di)
+
+###################################################### criar uma função para conectar e desconectar e que apareça ao final ######################################################################################################################
+
+    
+ricardao = Database('localhost','root','suporte','biblioteca')
+ricardao.conectar()
+print(vars(ricardao))
+# print(vars(ricardao))   
+# criar uma classe ControllerLivro
+# sera responsável por executar as querys SQL chamando o banco de dados e o livro
+# ajudar a classe livro para que implemente um crud(a classe)     
